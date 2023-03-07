@@ -1,6 +1,9 @@
 
 # read the system
-source("system set up.r")
+library(devtools)
+SourceURL <- "https://raw.githubusercontent.com/guanruhao/changchun-city-subway/main/system%20set%20up.R"
+source_url(SourceURL)
+
 
 
 # 设置/回顾模拟参数 set up/review simulation parameters
