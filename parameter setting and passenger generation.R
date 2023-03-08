@@ -44,7 +44,9 @@ simulation_data <- data.frame(
   time = numeric(n_passengers), 
   line = character(n_passengers), 
   start_station = numeric(n_passengers),
-  end_station = numeric(n_passengers)
+  end_station = numeric(n_passengers),
+  path_node=list(0),
+  path_edge=list(0)
 )
 # 模拟生成乘客
 for (i in 1:n_passengers) {
@@ -54,6 +56,7 @@ for (i in 1:n_passengers) {
   end_station <- OD[2]
   # find the shortest path
   path=unlist(shortest_paths(graph, from = start_station, to=end_station, output = "both")$epath)
+  path_v=unlist(shortest_paths(graph, from = start_station, to=end_station, output = "both")$vpath)
   aaa=rle(line_frame[path,3])
   # Extract only the values that appear once or that have a transition in their value
   taken_lines<- aaa$values[c(TRUE, aaa$lengths[-length(aaa$lengths)] > 1)]
@@ -63,10 +66,14 @@ for (i in 1:n_passengers) {
   simulation_data$line[i] <- list(taken_lines)
   simulation_data$start_station[i] <- start_station
   simulation_data$end_station[i] <- end_station
+  simulation_data$path_edge[i]<-list(path)
+  simulation_data$path_node[i]<-list(path_v)
 }
+simulation_data$X0=NULL
+simulation_data$X0.1=NULL
 #sort the frame by time
 simulation_data=simulation_data[order(simulation_data$time,decreasing = F),]
-rm(start_station,end_station,i,OD,path,taken_lines,aaa)
+rm(start_station,end_station,i,OD,path,taken_lines,aaa,path_v)
 
 
 
