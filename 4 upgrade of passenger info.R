@@ -2,7 +2,7 @@
 
 
 library(devtools)
-source_url('https://raw.githubusercontent.com/guanruhao/changchun-city-subway/main/train%20schedule.R')
+source_url('https://raw.githubusercontent.com/guanruhao/changchun-city-subway/main/3%20train%20schedule.R')
 
 
 direction=list(0)
