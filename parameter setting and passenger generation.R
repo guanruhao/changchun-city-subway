@@ -42,6 +42,7 @@ rm(nodes,edges,i)
 # 创建模拟数据框build simulation data frame
 simulation_data <- data.frame(
   time = numeric(n_passengers), 
+  long_line=character(n_passengers),
   line = character(n_passengers), 
   start_station = numeric(n_passengers),
   end_station = numeric(n_passengers),
@@ -63,6 +64,7 @@ for (i in 1:n_passengers) {
   
   # 将乘客信息添加到模拟数据框中
   simulation_data$time[i] <-runif(1,600,2640)#from 5am to 10pm
+  simulation_data$long_line[i]<-list(line_frame[path,3])
   simulation_data$line[i] <- list(taken_lines)
   simulation_data$start_station[i] <- start_station
   simulation_data$end_station[i] <- end_station
@@ -74,20 +76,3 @@ simulation_data$X0.1=NULL
 #sort the frame by time
 simulation_data=simulation_data[order(simulation_data$time,decreasing = F),]
 rm(start_station,end_station,i,OD,path,taken_lines,aaa,path_v)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
