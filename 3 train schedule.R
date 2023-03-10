@@ -2,7 +2,7 @@
 
 #load previous works
 library(devtools)
-source_url('https://raw.githubusercontent.com/guanruhao/changchun-city-subway/main/parameter%20setting%20and%20passenger%20generation.R')
+source_url('https://raw.githubusercontent.com/guanruhao/changchun-city-subway/main/2%20parameter%20setting%20and%20passenger%20generation.R')
 rm(n_trains)
 #the simulation of schedule is from 4am up to 2am next day.
 #it covers the time of passenger generation in order to make sure 
