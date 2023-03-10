@@ -1,7 +1,7 @@
 
 # read the system
 library(devtools)
-SourceURL <- "https://raw.githubusercontent.com/guanruhao/changchun-city-subway/main/system%20set%20up.R"
+SourceURL <- "https://raw.githubusercontent.com/guanruhao/changchun-city-subway/main/1%20system%20set%20up.R"
 source_url(SourceURL)
 rm(SourceURL)
 
