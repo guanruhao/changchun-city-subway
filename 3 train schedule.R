@@ -79,7 +79,13 @@ for(i in 1:n_lines){
   assign(name1,AAA)
   assign(name2,BBB)
 }
-
+#columns of matrices represent station numbers of corresponding lines
+#(1 16 5 4) to (15 32 59 71) from left to right columns respectively.
+#but actually they are reversed for direction2 (15 32 59 71) to (1 16 5 4)
+#we need to fix them
+for(i in 1:n_lines){
+  name=paste0("line",i,"_direction2")
+  assign(name,get(name)[, ncol(get(name)):1])}
 #till now, "line()_direction()"are time schedules for trains
 #for any matrix "line" number means the number of line
 #"direction" has 2 elements: 1 is from (1 16 5 4) to (15 32 59 71)
