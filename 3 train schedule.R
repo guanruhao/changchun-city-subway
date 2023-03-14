@@ -11,13 +11,13 @@ rm(n_trains)
 #
 #
 #
-#now assume at starting time 3am, all first trains depart at station number 1 16 5 4
+#now assume at starting time 2am, all first trains depart at station number 1 16 5 4
 #for line 1 2 3 4 respectively.it takes 3 minutes (6 time blocks)for a train from
 #departure to departure at the next station (return back if reach the terminal).
 #and assume the next trains will departs 9 minutes after than the previous trains
 #until all trains are in the system. we should assume all trains are having the
 #same speed
-series_for_all<- seq(from = 360, to = 3120, by = 6)
+series_for_all<- seq(from = 240, to = 3120, by = 6)
 length(series_for_all)
 #number of trains for all 4 lines from 1 to 4
 number_train=c(10,12,20,10)
