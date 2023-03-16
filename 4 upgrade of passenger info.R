@@ -36,13 +36,6 @@ rm(data,i,j,name,line,line_usage,long_direction,node_usage,start,end,new_matrix)
 library(devtools)
 source_url('https://raw.githubusercontent.com/guanruhao/function-repo/main/remove%20local%20duplicates.R')
 
-remove_local_duplicates(simulation_data$long_line[5],direction[5])
-
-simulation_data[2,]$long_line
-simulation_data[2,]$path_node
-
-direction[2]
-
 
 
 
