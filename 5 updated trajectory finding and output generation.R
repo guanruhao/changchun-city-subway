@@ -1,3 +1,7 @@
+library(devtools)
+source_url('https://raw.githubusercontent.com/guanruhao/changchun-city-subway/main/4%20upgrade%20of%20passenger%20info.R')
+
+
 
 simu=function(aaa,bbb,ccc,ddd,eee){
   aaa=unlist(aaa)
