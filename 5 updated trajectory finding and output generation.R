@@ -75,10 +75,10 @@ find_trajectory=function(time,num_passenger) {
 }
 
 #build the result matrix and then export them to csv for further analysis
-output=matrix(0,nrow=100,ncol=length(600:2880))
+output=matrix(0,nrow=n_passengers,ncol=length(600:2880))
 
 
-for (i in 1:100){
+for (i in 1:n_passengers){
   k=i
   aaa=simulation_data[k,]$long_line
   bbb=simulation_data[k,]$path_node
