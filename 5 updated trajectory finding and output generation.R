@@ -1,8 +1,9 @@
 library(devtools)
 source_url('https://raw.githubusercontent.com/guanruhao/changchun-city-subway/main/4%20upgrade%20of%20passenger%20info.R')
+#this function is to return the more detailed information about the passenger
 
 
-
+#according to data "simulation_data"
 simu=function(aaa,bbb,ccc,ddd,eee){
   aaa=unlist(aaa)
   bbb=unlist(bbb)
@@ -42,6 +43,9 @@ simu=function(aaa,bbb,ccc,ddd,eee){
     result <- c(result, new_group)
   }
   return(list(result,1+unlist(rle(aaa)[1]),ddd,unlist(rle(aaa)[1]),bbb))}
+
+#this function is to find trajectory a passenger at according to 
+#output information of the function "simu"
 find_trajectory=function(time,num_passenger) {
   # a function to return trajectory given time
   # initialize group and rip ID
@@ -70,11 +74,11 @@ find_trajectory=function(time,num_passenger) {
   return(0)
 }
 
+#build the result matrix and then export them to csv for further analysis
+output=matrix(0,nrow=100,ncol=length(600:2880))
 
-output=matrix(0,nrow=10,ncol=length(600:2880))
 
-
-for (i in 1:10){
+for (i in 1:100){
   k=i
   aaa=simulation_data[k,]$long_line
   bbb=simulation_data[k,]$path_node
@@ -95,18 +99,11 @@ for (i in 1:10){
   time_end=split_AAA[[length(split_AAA)]][length(split_AAA[[length(split_AAA)]])]
   sequence=c(time_start:time_end)
   for (j in 1:length(sequence)){
-    output[i,sequence[j]]=find_trajectory(sequence[j],i)}
+    output[i,sequence[j]-600]=find_trajectory(sequence[j],i)}
 }
 
 write.csv(output,"C:/Users/10274/Desktop/output.csv")
 
+#danger zone
 
-
-
-
-
-
-
-
-
-
+rm(output)
