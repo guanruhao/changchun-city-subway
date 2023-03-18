@@ -102,7 +102,7 @@ for (i in 1:n_passengers){
     output[i,sequence[j]-600]=find_trajectory(sequence[j],i)}
 }
 
-write.csv(output,"C:/Users/10274/Desktop/output.csv")
+write.csv(output,"output.csv")
 
 #danger zone
 
