@@ -136,7 +136,20 @@ print(undirected_daily_usage)
 
 
 
+#now build a big matrix to reflect the directed link usage along time
+#this is to reflect how many peoples are at a particular path given moment
+#path means directed
+timed_usage=matrix(0,nrow=nrow(line_frame),ncol=ncol(output))
 
+for(i in 1:ncol(output)) {
+  timed_usage[, i]=apply(output[, i, drop=FALSE],2,function(x) table(factor(x, levels = 1:nrow(line_frame))))
+}
+# assign row and column names
+timed_usage=as.data.frame(timed_usage)
+rownames(timed_usage)=paste0("path_number",1:nrow(line_frame))
+colnames(timed_usage)=paste0("time", 600+c(1:ncol(output)))
+#we don't need to calculate timed undirected link usage as a link has two directed and independent trajectories
+print(timed_usage)
 
 
 
