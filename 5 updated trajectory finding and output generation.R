@@ -75,7 +75,13 @@ find_trajectory=function(time,num_passenger) {
   return(0)
 }
 
-#build the result matrix and then export them to csv for further analysis if needed
+#or do the following step to fine source in github
+library(devtools)
+source_url("https://raw.githubusercontent.com/guanruhao/function-repo/main/function%20simu%20and%20find%20trajectory.R")
+
+
+
+#build the output matrix and then export them to csv for further analysis if needed
 output=matrix(0,nrow=n_passengers,ncol=length(600:2880))
 
 #the for loop to give values on output matrix
@@ -104,25 +110,48 @@ for (i in 1:n_passengers){
 }
 
 
-#reflect the daily usage
+#reflect the daily usage \
+#this is the directed data counts link usages
+# for example 2->1 and 1->2 are different and their usage will be counted separately
 total_usage=matrix(0,ncol=1,nrow=nrow(line_frame))
 for (i in 1:nrow(line_frame)){
   total_usage[i,]=sum(apply(output==i,1,sum)>0)}
 line_frame=cbind(line_frame,total_usage)
-colnames(line_frame)=c("start station","end station","subway line number","daily usage")
+colnames(line_frame)=c("start","end","line_number","daily_usage")
+directed_daily_usage=as.data.frame(line_frame)
+#
+#
+#
+#generate a new frame to show the link usage (un-directed)
+#combine directed_daily_usage's usage to undirected link daily usage
+#note that the generated new frame's 1st and 2nd column only represent
+#the link between these two adjacent stations
+library(dplyr)
+undirected_daily_usage=directed_daily_usage %>% 
+  group_by(Start = pmin(start, end), End = pmax(start, end)) %>% 
+  summarise(Line = first(line_number), Usage = sum(daily_usage))
+
+print(directed_daily_usage)
+print(undirected_daily_usage)
+
+
+
+
+
+
+
+
 
 
 
 #danger zone
 #
 #
-#do this if this big matrix is occupying you too much RAM
-rm(output)
+
 #do this if need to export them to csv for further analysis.
 write.csv(output,"C:/Users/10274/Desktop/output.csv")
+#do this if this big matrix is occupying too much RAM
+rm(output)
 #
 #
 #
-
-
-
