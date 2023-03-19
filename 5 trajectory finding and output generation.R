@@ -138,7 +138,7 @@ print(undirected_daily_usage)
 
 #now build a big matrix to reflect the directed link usage along time
 #this is to reflect how many peoples are at a particular path given moment
-#path means directed
+#path means directed that 1 to 2 and 2 to 1 are differnet
 timed_usage=matrix(0,nrow=nrow(line_frame),ncol=ncol(output))
 
 for(i in 1:ncol(output)) {
